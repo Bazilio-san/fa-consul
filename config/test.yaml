@@ -1,0 +1,31 @@
+# Test configuration for af-consul-ts
+# This file is used when NODE_ENV=test
+
+consul:
+  check:
+    interval: "10s"
+    timeout: "5s"
+    deregistercriticalserviceafter: "3m"
+  agent:
+    dev:
+      dc: "dc-dev"
+    prd:
+      dc: "dc-prd"
+  service:
+    enable: true
+    name: "af-consul-ts"
+    instance: "test"
+    version: "0.0.1"
+    description: "AF-CONSUL TEST"
+    tags:
+      - "af"
+      - "consul"
+      - "test"
+    meta:
+      CONSUL_TEST: "12345"
+      line_yellow: "straight"
+    port: 10000
+
+webServer:
+  host: "0.0.0.0"
+  port: 10000

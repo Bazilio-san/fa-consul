@@ -1,0 +1,276 @@
+import EventEmitter from 'events';
+
+import { AccessPoints } from './access-points/access-points';
+import { RegisterCheck, ConsulClientOptions } from './consul-client';
+
+export type Maybe<T> = T | undefined;
+export type Nullable<T> = T | null;
+export type TBooleanLike = 'true' | 'false' | 'yes' | 'no' | '1' | '0' | 1 | 0;
+
+export interface ISocketInfo {
+  host: string;
+  port: string | number;
+}
+
+export interface IRegisterCheck extends RegisterCheck {
+  name?: string;
+  tcp?: string;
+  dockercontainerid?: string;
+  shell?: string;
+  timeout?: string;
+  deregistercriticalserviceafter?: string;
+}
+
+export interface IRegisterConfig {
+  id: string;
+  name: string;
+  tags?: string[];
+  address?: string;
+  port?: number;
+  meta?: Record<string, string>;
+  check?: IRegisterCheck;
+  checks?: IRegisterCheck[];
+  connect?: any;
+  proxy?: any;
+  taggedAddresses?: any;
+}
+
+export type TRegisterType = 'if-not-registered' | 'if-config-differ' | 'force';
+
+export interface IRegisterOptions {
+  registerType?: TRegisterType,
+  deleteOtherInstance?: boolean,
+  noAlreadyRegisteredMessage?: boolean,
+}
+
+export type TRegisterResult = 'already' | 'just' | false;
+
+export interface IConsulAgentOptions extends ConsulClientOptions {
+  host: string;
+  port: string;
+  dc?: string | undefined;
+  defaults?: { token?: string | undefined } | undefined;
+}
+
+export interface IFullConsulAgentOptions {
+  reg: IConsulAgentOptions,
+  dev: IConsulAgentOptions,
+  prd: IConsulAgentOptions
+}
+
+export type TLoggerMethod = (...args: unknown[]) => any;
+
+export interface ILogger {
+  silly: TLoggerMethod;
+  debug: TLoggerMethod;
+  info: TLoggerMethod;
+  warn: TLoggerMethod;
+  error: TLoggerMethod;
+}
+
+export interface IMeta {
+  [prop: string]: Nullable<string | number | boolean>,
+}
+
+export interface IAccessPoint {
+  consulServiceName: string,
+  id?: string,
+  title?: string,
+  port?: number | null,
+  host?: string | null,
+  setProps?: (data: Record<string, any> | null) => IAccessPoint | undefined,
+  isAP?: true,
+  meta?: IMeta | undefined,
+  isReachable?: boolean,
+  lastSuccessUpdate?: number,
+  idHostPortUpdated?: boolean,
+  getChanges?: () => [string, any, any][] | undefined,
+  updateIntervalIfSuccessMillis?: number,
+  noConsul?: boolean,
+  retrieveProps?: (host: string, meta?: any) => { host: string; port: number | null | undefined },
+
+  [propName: string]: any
+}
+
+export interface IAccessPointsMethods {
+  addAP?: (apKey: string, apData: any) => IAccessPoint | undefined,
+  setAP?: (apKey: string, apData: Record<string, any> | null) => IAccessPoint | undefined,
+  getAP?: (accessPointKey: string, andNotIsAP?: boolean) => IAccessPoint | undefined,
+  get?: (accessPointKey?: string, andNotIsAP?: boolean) => { [apKey: string]: IAccessPoint } | IAccessPoint | undefined,
+}
+
+export type IAccessPoints = {
+  [apKey: string]: IAccessPoint,
+} & IAccessPointsMethods
+
+export interface IConsulAgentConfig {
+  host?: string, // || FQDN || env.HOST_HOSTNAME || config.consul.service?.host || '127.0.0.1'
+  port?: string, // || 8500
+  secure?: string | TBooleanLike | boolean,
+  token?: string,
+  dc?: string;
+}
+
+export interface IFullConsulAgentConfig {
+  reg: IConsulAgentConfig,
+  dev?: IConsulAgentConfig,
+  prd?: IConsulAgentConfig
+}
+
+export interface IAFConsulConfig {
+  agent: IFullConsulAgentConfig,
+  check?: IRegisterCheck,
+  service: {
+    id?: string,
+    name: string,
+    instance: string,
+    version: string,
+    description: string,
+    tags?: string | string[],
+    meta?: string | IMeta,
+    host?: Nullable<string>,
+    port?: Nullable<string | number>
+    /**
+     * if false - disable the registration of the service with the consul
+     * Does not affect anything directly in this package and should be used where the package is imported
+     */
+    enable?: boolean,
+    /**
+     * @deprecated use `enable` instead
+     * if true - disable the registration of the service with the consul.
+     * For backward compatibility, has an increased priority of enable.
+     *
+     * Does not affect anything directly in this package and should be used where the package is imported
+     */
+    noRegOnStart?: boolean,
+  },
+}
+
+export interface IAFConfig {
+  accessPoints?: IAccessPoints | AccessPoints,
+  consul: IAFConsulConfig,
+  webServer: any,
+  service?: {
+    id?: string,
+    address?: string,
+    fromService?: string,
+  };
+}
+
+export type TCommonFnResult = any;
+
+type TMethod<T> = (...args: any[]) => T;
+
+export interface ICLOptions {
+  config: IAFConfig,
+  logger?: ILogger,
+  em?: EventEmitter,
+
+  envCode?: string,
+  getConsulUIAddress?: TMethod<string>,
+  hash?: string,
+}
+
+export interface IConsulServiceInfo {
+  ID: string,
+  Service: string,
+  Tags?: string[],
+  Meta?: IMeta,
+  Port: number,
+  Address: string,
+  Weights?: { Passing: number, Warning: number },
+  EnableTagOverride?: boolean,
+  Datacenter?: string,
+
+  // Service attributes
+  Proxy?: object, // { MeshGateway: {}, Expose: {} }
+  Connect?: object, // { MeshGateway: {}, Expose: {} }
+  CreateIndex?: number,
+  ModifyIndex?: number,
+
+  [prop: string]: any,
+}
+
+export interface IConsulNodeInfo {
+  ID: string,
+  Node?: string,
+  Address: string,
+  Datacenter?: string,
+  TaggedAddresses?: object, // { lan: <ip>, lan_ipv4: <ip>, wan: <ip>, wan_ipv4: <ip> }
+  Meta?: IMeta,
+  CreateIndex?: number,
+  ModifyIndex?: number,
+}
+
+export interface IConsulHealthServiceInfo {
+  Node?: IConsulNodeInfo,
+  Service?: IConsulServiceInfo,
+  Checks?: any[]
+}
+
+export interface IAPIArgs {
+  agentOptions?: IConsulAgentOptions | undefined,
+  options?: any;
+  withError?: boolean;
+  result?: any;
+  agentType?: keyof IFullConsulAgentConfig | undefined;
+}
+
+export interface IConsulAPI {
+  agentServiceList: (apiArgs?: IAPIArgs) => Promise<{ [serviceName: string]: IConsulServiceInfo }>,
+
+  catalogServiceList (dc: string, apiArgs?: IAPIArgs): Promise<{ [serviceId: string]: string[] }>,
+
+  consulHealthService: (apiArgs: IAPIArgs) => Promise<IConsulHealthServiceInfo[]>,
+  getServiceInfo: (serviceName: string) => Promise<IConsulServiceInfo | undefined>,
+  getServiceSocket: (serviceName: string, defaults: ISocketInfo) => Promise<ISocketInfo>,
+  agentServiceRegister: (options: IRegisterConfig, withError?: boolean) => Promise<boolean>,
+  agentServiceDeregister: (serviceId: string, apiArgs?: IAPIArgs) => Promise<boolean>,
+  deregisterIfNeed: (serviceId: string, agentOptions?: IConsulAgentOptions) => Promise<boolean>,
+  agentMembers: (apiArgs?: IAPIArgs) => Promise<TCommonFnResult>,
+  checkIfServiceRegistered: (serviceIdOrName: string, apiArgs?: IAPIArgs) => Promise<IConsulHealthServiceInfo | undefined>,
+  registerService: (registerConfig: IRegisterConfig, registerOptions: IRegisterOptions) => Promise<TRegisterResult>,
+
+  agentOptions: IFullConsulAgentOptions,
+  getConsulAgentOptions: (clOptions: ICLOptions) => Promise<IFullConsulAgentOptions>,
+}
+
+export interface ICyclicStartArgs {
+  cLOptions?: ICLOptions,
+  registerInterval?: number,
+  registerType?: TRegisterType,
+  deleteOtherInstance?: boolean,
+  noAlreadyRegisteredMessage?: boolean,
+}
+
+export interface IRegisterCyclic {
+  isStarted: boolean,
+  skipNextRegisterAttemptUntil: number,
+  healthCheckIntervalMillis: number,
+  registerIntervalMillis: number,
+  options: ICLOptions,
+  _timerId: ReturnType<typeof setTimeout>,
+  _logger: ILogger,
+
+  start: (cyclicStartArgs?: ICyclicStartArgs) => Promise<-1 | 0 | 1>
+  stop: () => void
+}
+
+export interface IAFConsulAPI extends IConsulAPI {
+  registerConfig: IRegisterConfig,
+  getConsulUIAddress: TMethod<string>,
+  serviceId: string,
+  register: {
+    once: (registerType?: TRegisterType) => Promise<TRegisterResult>,
+    cyclic: IRegisterCyclic,
+  }
+  deregister: (svcId?: string, agentHost?: string, agentPort?: string) => Promise<boolean>
+  consulUI?: string,
+}
+
+export interface ICache<T> {
+  [hash: string]: {
+    created: number,
+    value: T
+  }
+}
