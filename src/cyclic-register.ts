@@ -12,7 +12,7 @@ const prefixG = `${green}${prefix}${reset}`;
 
 const DEFAULT_INTERVAL = 60_000;
 
-const isDebugReg = /\baf-consul:(reg|\*)/i.test(DEBUG) || /\baf-consul:\*/i.test(DEBUG);
+const isDebugReg = /\bfa-consul:(reg|\*)/i.test(DEBUG) || /\bfa-consul:\*/i.test(DEBUG);
 const debug = (msg: string) => {
   if (isDebugReg) {
     console.log(`${magenta}${PREFIX}${reset}: ${msg}`);

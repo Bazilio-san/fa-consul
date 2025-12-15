@@ -34,7 +34,7 @@ const mutex = new Mutex();
 
 const dbg = {
   on: CONSUL_DEBUG_ON,
-  curl: /af-consul:curl/i.test(DEBUG),
+  curl: /fa-consul:curl/i.test(DEBUG),
 };
 const debug = (msg: string) => {
   if (dbg.on) {

@@ -23,10 +23,10 @@ consul:
       secure: false
   service:
     enable: true
-    name: "af-consul-test"
+    name: "fa-consul-test"
     instance: "test"
     version: "0.0.1"
-    description: "AF-CONSUL TEST"
+    description: "FA-CONSUL TEST"
     tags:
       - "af"
       - "consul"

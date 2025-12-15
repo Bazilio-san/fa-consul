@@ -75,7 +75,7 @@ const config = {
       name: e.CONSUL_SERVICE_NAME || 'fa-consul',
       instance: e.CONSUL_SERVICE_INSTANCE || 'test',
       version: e.CONSUL_SERVICE_VERSION || '0.0.1',
-      description: e.CONSUL_SERVICE_DESCRIPTION || 'AF-CONSUL TEST',
+      description: e.CONSUL_SERVICE_DESCRIPTION || 'FA-CONSUL TEST',
       tags: e.CONSUL_SERVICE_TAGS || ['af', 'consul', 'test'],
       meta: e.CONSUL_SERVICE_META || { CONSUL_TEST: 12345, line_yellow: 'straight' },
       host: e.CONSUL_SERVICE_HOST || null,
@@ -95,7 +95,7 @@ const config = {
           - Polling ${CONSUL_ID}   
           - The data is up-to-date ${CONSUL_ID}
     
-    af-consul 		 
+    fa-consul 		 
         `${yellow} REGISTER CONFIG:\n${JSON.stringify(registerConfig, undefined, 2)}\n${reset}`
         `CONSUL AGENT OPTIONS:\n${JSON.stringify(fullConsulAgentOptions, undefined, 2)}`
         `${rqId}HTTP Status: ${statusCode}`
@@ -103,10 +103,10 @@ const config = {
         `No info about service ID ${cyan}${serviceName}`
         `${prefixG} Skip registration check after health check`    
     
-    af-consul:curl
+    fa-consul:curl
         const msg = dbg.curl ? getCurl(request, true) : getHttpRequestText(request);
         `[${request._id_}] ${yellow}${msg}${reset}`
     
-    af-consul:reg
+    fa-consul:reg
         `${PREFIX}: updated ${updatedCount.length} access point(s)`
         `${prefixG} Service ${cyan}${registerConfig.id}${reset} registration check...`

@@ -16,7 +16,7 @@ consul:
     name: "fa-consul"
     instance: "test"
     version: "0.0.1"
-    description: "AF-CONSUL TEST"
+    description: "FA-CONSUL TEST"
     tags:
       - "af"
       - "consul"

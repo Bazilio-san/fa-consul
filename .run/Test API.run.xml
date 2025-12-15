@@ -7,7 +7,7 @@
     <jest-options value="--forceExit" />
     <envs>
       <env name="NODE_ENV" value="test" />
-      <env name="DEBUG" value="af-consul:curl" />
+      <env name="DEBUG" value="fa-consul:curl" />
     </envs>
     <scope-kind value="SUITE" />
     <test-file value="$PROJECT_DIR$/__tests__/api.test.ts" />

@@ -794,18 +794,18 @@ consul:
       token: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
   service:
     enable: true
-    name: "af-consul-test"
+    name: "fa-consul-test"
     instance: "test-instance"
     version: "1.0.0"
     description: "Test service for fa-consul"
     tags:
       - "test"
-      - "af-consul"
+      - "fa-consul"
     meta:
       host: "localhost"
       port: "9999"
       NODE_ENV: "test"
-    id: "dev-test-af-consul-test-instance"
+    id: "dev-test-fa-consul-test-instance"
     host: "localhost"
     port: 9999
   envCode:
