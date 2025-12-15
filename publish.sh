@@ -67,7 +67,7 @@ exit_on_error
 git commit --no-verify -m "$new_version"
 exit_on_error
 
-git push github refs/heads/master:master
+git push origin refs/heads/master:master
 exit_on_error
 
 npm publish

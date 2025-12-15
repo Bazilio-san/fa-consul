@@ -1,6 +1,6 @@
 {
   "name": "fa-consul",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A highly specialized function library",
   "type": "module",
   "main": "dist/index.js",
