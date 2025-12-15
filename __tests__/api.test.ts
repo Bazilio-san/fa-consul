@@ -31,10 +31,17 @@ describe('Test API', () => {
 
   test('register', async () => {
     log.info.mockClear();
+    // Сначала дерегистрируем, чтобы гарантировать чистое состояние
+    await api.deregisterIfNeed(api.serviceId);
+
     const registerResult1 = await api.register.once();
-    expect(['just']).toContain(registerResult1);
+    expect(registerResult1).toBe('just');
+
+    // Пауза для прохождения health check (interval = 10s)
+    await sleep(2000);
+
     const registerResult2 = await api.register.once();
-    expect(['registered', 'already']).toContain(registerResult2);
+    expect(registerResult2).toBe('already');
   }, TIMEOUT_MILLIS);
 
   test('agentServiceList', async () => {

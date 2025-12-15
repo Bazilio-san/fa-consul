@@ -1,8 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="TEST: deregister" type="NodeJSConfigurationType" path-to-js-file="dist/cjs/__tests__/deregister.js" working-dir="$PROJECT_DIR$">
-    <envs>
-      <env name="DEBUG" value="fa-consul" />
-    </envs>
-    <method v="2" />
-  </configuration>
-</component>
