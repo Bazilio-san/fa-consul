@@ -4,8 +4,10 @@ import { AccessPoints, IAccessPoint } from '../../src';
 import { logger } from '../lib/logger';
 import { setProperty } from '../lib/test-utils';
 
-
-const accessPointsExpected = require('./access-points-expected.json');
+const accessPointsConfig = nodeConfig.get<Record<string, any>>('accessPoints');
+const accessPointsExpected = Object.fromEntries(
+  Object.entries(accessPointsConfig).map(([id, ap]) => [id, { id, ...ap }]),
+);
 
 const cfg = { accessPoints: new AccessPoints(nodeConfig.get('accessPoints')) };
 

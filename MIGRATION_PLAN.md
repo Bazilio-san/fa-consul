@@ -46,7 +46,7 @@ Example of typical usage pattern from `fa-mcp-sdk`:
 
 ```typescript
 // get-consul-api.ts
-import { getAPI } from 'af-consul-ts';
+import { getAPI } from 'fa-consul';
 
 export const getConsulAPI = async () => {
   return getAPI({
@@ -71,7 +71,7 @@ const { deregister } = await getConsulAPI();
 await deregister(svcId, options);
 
 // access-points-updater.ts
-import { accessPointsUpdater } from 'af-consul-ts';
+import { accessPointsUpdater } from 'fa-consul';
 
 accessPointsUpdater.start({ config: appConfig, logger, em: eventEmitter }, 10_000);
 accessPointsUpdater.stop();
@@ -797,7 +797,7 @@ consul:
     name: "af-consul-test"
     instance: "test-instance"
     version: "1.0.0"
-    description: "Test service for af-consul-ts"
+    description: "Test service for fa-consul"
     tags:
       - "test"
       - "af-consul"
@@ -1311,7 +1311,7 @@ mv __tests__/access-points/access-points-expected.json __tests__/fixtures/
 module.exports = {
   check: { interval: '1s', ... },
   agent: { reg: {...}, dev: {...}, prd: {...} },
-  service: { name: 'af-consul-ts', ... }
+  service: { name: 'fa-consul', ... }
 };
 ```
 

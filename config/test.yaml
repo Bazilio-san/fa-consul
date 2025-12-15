@@ -1,4 +1,4 @@
-# Test configuration for af-consul-ts
+# Test configuration for fa-consul
 # This file is used when NODE_ENV=test
 
 consul:
@@ -13,7 +13,7 @@ consul:
       dc: "dc-prd"
   service:
     enable: true
-    name: "af-consul-ts"
+    name: "fa-consul"
     instance: "test"
     version: "0.0.1"
     description: "AF-CONSUL TEST"

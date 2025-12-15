@@ -1,6 +1,6 @@
 {
-  "name": "af-consul-ts",
-  "version": "5.0.1",
+  "name": "fa-consul",
+  "version": "1.0.1",
   "description": "A highly specialized function library",
   "type": "module",
   "main": "dist/index.js",
@@ -38,6 +38,7 @@
     "af-logger": "^2.0.29",
     "config": "^4.1.1",
     "dotenv": "^17.2.3",
+    "eslint": "^9.39.2",
     "globals": "^16.5.0",
     "jest": "^30.2.0",
     "shx": "^0.4.0",
@@ -59,6 +60,6 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Bazilio-san/af-consul-ts.git"
+    "url": "git+https://github.com/Bazilio-san/fa-consul.git"
   }
 }

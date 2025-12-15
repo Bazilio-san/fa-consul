@@ -33,3 +33,4 @@ local*.*
 /__tests__/lib/*.d.ts
 /__tests__/lib/*.map
 /test.js
+/.npmrc

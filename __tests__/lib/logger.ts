@@ -2,7 +2,7 @@ import { getAFLogger } from 'af-logger';
 import { ILoggerSettings } from 'af-logger/dist/types/interfaces';
 
 const minLevel = 'silly';
-const prefix = 'af-consul-ts';
+const prefix = 'fa-consul';
 const logDir = './_log';
 
 const loggerSettings: ILoggerSettings = {

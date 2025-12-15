@@ -1,4 +1,4 @@
-# Default configuration for af-consul-ts
+# Default configuration for fa-consul
 # Override these values in local.yaml
 
 consul:
