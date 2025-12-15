@@ -1,9 +1,9 @@
 import * as http from 'http';
 import * as https from 'https';
 
-import { CONSUL_AP_UPDATE_TIMEOUT_MILLIS } from '../constants';
+import { CONSUL_AP_UPDATE_TIMEOUT_MILLIS } from '../constants.js';
 
-import { AccessPoints } from './access-points';
+import { AccessPoints } from './access-points.js';
 
 export const isHttpAvailable = (url: string) => new Promise((resolve) => {
   const client = /^https:/i.test(url) ? https : http;

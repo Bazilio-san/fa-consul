@@ -1,4 +1,4 @@
-import { RequestInfo } from '../consul-client';
+import { RequestInfo } from '../consul-client/index.js';
 
 const getHttpRequestText = (request: RequestInfo) => {
   const { hostname, port, path, method, headers, body } = request;
@@ -21,4 +21,4 @@ const getHttpRequestText = (request: RequestInfo) => {
   return res;
 };
 
-export default getHttpRequestText;
+export { getHttpRequestText };

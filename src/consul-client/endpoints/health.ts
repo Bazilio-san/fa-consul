@@ -1,5 +1,5 @@
-import { ConsulHttpClient } from '../http-client';
-import { HealthServiceInfo } from '../types';
+import { ConsulHttpClient } from '../http-client.js';
+import { HealthServiceInfo } from '../types.js';
 
 export class HealthAPI {
   constructor (private client: ConsulHttpClient) {}

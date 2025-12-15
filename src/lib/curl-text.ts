@@ -1,4 +1,4 @@
-import { RequestInfo } from '../consul-client';
+import { RequestInfo } from '../consul-client/index.js';
 
 class ToCurl {
   private readonly request: {

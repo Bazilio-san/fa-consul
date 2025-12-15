@@ -1,4 +1,4 @@
-/* eslint-disable no-console */
+ 
 
 const loggerStub = {
   silly: console.log,
@@ -8,4 +8,4 @@ const loggerStub = {
   error: console.log,
 };
 
-export default loggerStub;
+export { loggerStub };

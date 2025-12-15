@@ -1,8 +1,8 @@
-import { AgentAPI } from './endpoints/agent';
-import { CatalogAPI } from './endpoints/catalog';
-import { HealthAPI } from './endpoints/health';
-import { ConsulHttpClient } from './http-client';
-import { ConsulClientOptions, OnRequestHook, OnResponseHook } from './types';
+import { AgentAPI } from './endpoints/agent.js';
+import { CatalogAPI } from './endpoints/catalog.js';
+import { HealthAPI } from './endpoints/health.js';
+import { ConsulHttpClient } from './http-client.js';
+import { ConsulClientOptions, OnRequestHook, OnResponseHook } from './types.js';
 
 export class ConsulClient {
   private readonly httpClient: ConsulHttpClient;
@@ -27,5 +27,5 @@ export class ConsulClient {
   }
 }
 
-export * from './types';
-export { ConsulHttpClient } from './http-client';
+export * from './types.js';
+export { ConsulHttpClient } from './http-client.js';

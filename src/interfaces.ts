@@ -1,7 +1,7 @@
 import EventEmitter from 'events';
 
-import { AccessPoints } from './access-points/access-points';
-import { RegisterCheck, ConsulClientOptions } from './consul-client';
+import { AccessPoints } from './access-points/access-points.js';
+import { RegisterCheck, ConsulClientOptions } from './consul-client/index.js';
 
 export type Maybe<T> = T | undefined;
 export type Nullable<T> = T | null;

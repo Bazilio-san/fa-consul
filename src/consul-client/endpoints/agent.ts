@@ -1,5 +1,5 @@
-import { ConsulHttpClient } from '../http-client';
-import { ServiceInfo, RegisterServiceOptions, AgentMember, RegisterCheck } from '../types';
+import { ConsulHttpClient } from '../http-client.js';
+import { ServiceInfo, RegisterServiceOptions, AgentMember, RegisterCheck } from '../types.js';
 
 export class AgentAPI {
   constructor (private client: ConsulHttpClient) {}

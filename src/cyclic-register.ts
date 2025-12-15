@@ -1,11 +1,11 @@
-/* eslint-disable no-console */
+ 
 // noinspection JSUnusedGlobalSymbols
 
-import { DEBUG, FORCE_EVERY_REGISTER_ATTEMPT, PREFIX } from './constants';
-import { ICLOptions, IConsulAPI, ICyclicStartArgs, IRegisterConfig, IRegisterCyclic } from './interfaces';
-import { cyan, green, magenta, reset } from './lib/color';
-import loggerStub from './lib/logger-stub';
-import { toMills } from './lib/utils';
+import { DEBUG, FORCE_EVERY_REGISTER_ATTEMPT, PREFIX } from './constants.js';
+import { ICLOptions, IConsulAPI, ICyclicStartArgs, IRegisterConfig, IRegisterCyclic } from './interfaces.js';
+import { cyan, green, magenta, reset } from './lib/color.js';
+import { loggerStub } from './lib/logger-stub.js';
+import { toMills } from './lib/utils.js';
 
 const prefix = 'CONSUL-REG:';
 const prefixG = `${green}${prefix}${reset}`;

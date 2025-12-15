@@ -1,5 +1,5 @@
 // import 'dotenv/config';
-import getConsulAPI from './get-consul-api';
+import { getConsulAPI } from './get-consul-api.js';
 
 getConsulAPI().then(({ deregister }) => {
   const [, , svcId, agentHost, agentPort] = process.argv;

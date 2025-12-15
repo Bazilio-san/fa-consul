@@ -1,9 +1,9 @@
 import { pick } from 'af-tools-ts';
 import * as XXH from 'xxhashjs';
 
-import { IAFConfig, ICLOptions } from '../interfaces';
+import { IAFConfig, ICLOptions } from '../interfaces.js';
 
-import { isObject } from './utils';
+import { isObject } from './utils.js';
 
 const getHash = (data: any, base: '32' | '64' = '32', seed: number = 0xCAFEBABE) => {
   let stringToHash = '';

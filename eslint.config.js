@@ -1,76 +1,111 @@
-import eslint from '@eslint/js';
-import tseslint from 'typescript-eslint';
-import globals from 'globals';
+import tsParser from '@typescript-eslint/parser';
+import tsPlugin from '@typescript-eslint/eslint-plugin';
+import importPlugin from 'eslint-plugin-import';
+import unusedImports from 'eslint-plugin-unused-imports';
 
-export default tseslint.config(
-  // Ignores - must be first
-  {
-    ignores: [
-      'dist/',
-      'node_modules/',
-      'coverage/',
-      '_tmp/',
-      '_misc/',
-      '_log/',
-      '.run/',
-      '**/*.d.ts',
-      '**/*.min.js',
-      '**/*.cjs',
-      'test.js',
-      'config/',
-      'eslint.config.js',
-    ],
-  },
-
-  // Base ESLint recommended
-  eslint.configs.recommended,
-
-  // TypeScript ESLint recommended
-  ...tseslint.configs.recommended,
-
-  // Global settings for all files
-  {
-    languageOptions: {
-      ecmaVersion: 2022,
-      sourceType: 'module',
-      globals: {
-        ...globals.node,
-        ...globals.es2022,
-      },
-    },
-  },
-
-  // TypeScript files
+export default [
   {
     files: ['**/*.ts'],
+    languageOptions: {
+      parser: tsParser,
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+        project: './tsconfig.json',
+      },
+      globals: {
+        console: 'readonly',
+        process: 'readonly',
+        Buffer: 'readonly',
+        __dirname: 'readonly',
+        __filename: 'readonly',
+      },
+    },
+    plugins: {
+      '@typescript-eslint': tsPlugin,
+      'import': importPlugin,
+      'unused-imports': unusedImports,
+    },
     rules: {
-      // TypeScript specific
+      ...tsPlugin.configs.recommended.rules,
+      '@typescript-eslint/ban-ts-comment': 'off',
+      '@typescript-eslint/no-unused-vars': 'off',
+      '@typescript-eslint/no-unsafe-function-type': 'off',
+      'unused-imports/no-unused-imports': 'error',
+      'unused-imports/no-unused-vars': ['warn', {
+        'argsIgnorePattern': '^_',
+        'varsIgnorePattern': '^_',
+        'caughtErrorsIgnorePattern': '^_',
+        'ignoreRestSiblings': true
+      }],
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-unsafe-member-access': 'off',
-      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
-      '@typescript-eslint/explicit-function-return-type': 'off',
-      '@typescript-eslint/explicit-module-boundary-types': 'off',
-      '@typescript-eslint/no-non-null-assertion': 'off',
-      '@typescript-eslint/ban-ts-comment': 'off',
-      '@typescript-eslint/no-require-imports': 'off',
-
-      // General rules
-      'no-console': 'warn',
-      'no-debugger': 'error',
-      'prefer-const': 'error',
-      'no-var': 'error',
+      'import/no-default-export': 'error',
+      'import/extensions': ['error', 'always', {
+        'ts': 'never',
+        'js': 'always',
+        'pattern': {
+          '**/*.ts': 'always'
+        },
+        'ignorePackages': true
+      }],
+      // Formatting rules
+      'semi': ['error', 'always'],
+      'quotes': ['error', 'single', { 'avoidEscape': true }],
+      'space-before-function-paren': ['error', {
+        'anonymous': 'always',
+        'named': 'always',
+        'asyncArrow': 'always'
+      }],
+      'object-curly-spacing': ['error', 'always'],
+      'curly': ['error', 'all'],
+      'eol-last': ['error', 'always'],
     },
   },
-
-  // Test files
   {
-    files: ['**/*.test.ts', '**/*.spec.ts', '__tests__/**/*.ts'],
+    files: ['**/*.js'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: {
+        console: 'readonly',
+        process: 'readonly',
+        Buffer: 'readonly',
+        __dirname: 'readonly',
+        __filename: 'readonly',
+      },
+    },
+    plugins: {
+      'import': importPlugin,
+    },
+    rules: {
+      'import/no-default-export': 'off',
+      // Formatting rules
+      'semi': ['error', 'always'],
+      'quotes': ['error', 'single', { 'avoidEscape': true }],
+      'space-before-function-paren': ['error', {
+        'anonymous': 'always',
+        'named': 'always',
+        'asyncArrow': 'always'
+      }],
+      'object-curly-spacing': ['error', 'always'],
+      'curly': ['error', 'all'],
+      'eol-last': ['error', 'always'],
+    },
+  },
+  {
+    files: ['src/index.ts'],
+    rules: {
+      'import/no-default-export': 'off',
+    },
+  },
+  {
+    files: ['**/*.test.ts', '**/*.spec.ts'],
     languageOptions: {
       globals: {
         jest: 'readonly',
         describe: 'readonly',
         it: 'readonly',
-        test: 'readonly',
         expect: 'readonly',
         beforeEach: 'readonly',
         afterEach: 'readonly',
@@ -83,9 +118,23 @@ export default tseslint.config(
       '@typescript-eslint/no-unsafe-assignment': 'off',
       '@typescript-eslint/no-unsafe-member-access': 'off',
       '@typescript-eslint/no-unsafe-call': 'off',
-      '@typescript-eslint/no-var-requires': 'off',
-      '@typescript-eslint/no-require-imports': 'off',
-      'no-console': 'off',
     },
   },
-);
+  {
+    ignores: [
+      '.claude/',
+      '.idea/',
+      '.run/',
+      '_misc/',
+      '_tmp/',
+      'config/',
+      'deploy/',
+      'dist/',
+      'doc/',
+      'node_modules/',
+      'coverage/',
+      'cli-template/',
+      '**/*.d.ts',
+    ],
+  },
+];

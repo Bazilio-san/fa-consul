@@ -1,8 +1,8 @@
 import nodeConfig from 'config';
 
-import { AccessPoints, IAccessPoint } from '../../src';
-import { logger } from '../lib/logger';
-import { setProperty } from '../lib/test-utils';
+import { AccessPoints, IAccessPoint } from '../../src/index.js';
+import { logger } from '../lib/logger.js';
+import { setProperty } from '../lib/test-utils.js';
 
 const accessPointsConfig = nodeConfig.get<Record<string, any>>('accessPoints');
 const accessPointsExpected = Object.fromEntries(

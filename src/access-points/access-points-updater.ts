@@ -1,18 +1,18 @@
-/* eslint-disable no-console */
+ 
 // noinspection JSUnusedGlobalSymbols
 
-import { DEBUG, CONSUL_AP_UPDATE_TIMEOUT_MILLIS } from '../constants';
-import { getConsulApiCached } from '../index';
+import { DEBUG, CONSUL_AP_UPDATE_TIMEOUT_MILLIS } from '../constants.js';
+import { getConsulApiCached } from '../index.js';
 import {
   IAccessPoint,
   IAccessPoints,
   ICLOptions,
   IConsulAPI,
   IConsulHealthServiceInfo,
-} from '../interfaces';
-import { cyan, green, magenta, red, reset } from '../lib/color';
-import loggerStub from '../lib/logger-stub';
-import { sleep } from '../lib/utils';
+} from '../interfaces.js';
+import { cyan, green, magenta, red, reset } from '../lib/color.js';
+import { loggerStub } from '../lib/logger-stub.js';
+import { sleep } from '../lib/utils.js';
 
 const PREFIX = 'AP-UPDATER';
 

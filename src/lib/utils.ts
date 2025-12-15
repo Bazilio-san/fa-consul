@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 
-import { ICache, IConsulServiceInfo, IRegisterConfig } from '../interfaces';
+import { ICache, IConsulServiceInfo, IRegisterConfig } from '../interfaces.js';
 
 export const removeAroundQuotas = (str: string): string => {
   if (!str) {

@@ -1,7 +1,7 @@
 import * as http from 'http';
 import * as https from 'https';
 
-import { ConsulClientOptions, RequestInfo, ResponseInfo, OnRequestHook, OnResponseHook } from './types';
+import { ConsulClientOptions, RequestInfo, ResponseInfo, OnRequestHook, OnResponseHook } from './types.js';
 
 export class ConsulHttpClient {
   private readonly baseUrl: string;

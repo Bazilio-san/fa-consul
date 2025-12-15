@@ -1,7 +1,7 @@
-import { PREFIX } from './constants';
-import { ICLOptions, IRegisterConfig } from './interfaces';
-import { getFQDNCached } from './lib/fqdn';
-import { getPackageJson, parseMeta, parseTags, removeAroundQuotas } from './lib/utils';
+import { PREFIX } from './constants.js';
+import { ICLOptions, IRegisterConfig } from './interfaces.js';
+import { getFQDNCached } from './lib/fqdn.js';
+import { getPackageJson, parseMeta, parseTags, removeAroundQuotas } from './lib/utils.js';
 
 export const getServiceID = (name: string, instance: string, envCode: string = '') => {
   const p = (process.env.NODE_CONSUL_ENV || process.env.NODE_ENV) === 'production';

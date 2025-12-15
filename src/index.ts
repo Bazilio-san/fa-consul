@@ -1,11 +1,11 @@
-export { AccessPoints } from './access-points/access-points';
-export { accessPointsUpdater } from './access-points/access-points-updater';
-export { getAPI } from './get-api';
-export { getRegisterConfig, getServiceID } from './get-register-config';
-export { getConsulApiCached, prepareConsulAPI } from './prepare-consul-api';
-export { getFQDN, getFQDNCached } from './lib/fqdn';
-export { substitutePercentBracket } from './lib/utils';
-export { checkAccessPointAvailability, isHttpAvailable } from './access-points/access-points-utils';
+export { AccessPoints } from './access-points/access-points.js';
+export { accessPointsUpdater } from './access-points/access-points-updater.js';
+export { getAPI } from './get-api.js';
+export { getRegisterConfig, getServiceID } from './get-register-config.js';
+export { getConsulApiCached, prepareConsulAPI } from './prepare-consul-api.js';
+export { getFQDN, getFQDNCached } from './lib/fqdn.js';
+export { substitutePercentBracket } from './lib/utils.js';
+export { checkAccessPointAvailability, isHttpAvailable } from './access-points/access-points-utils.js';
 export type {
   IAFConfig,
   ICache,
@@ -38,10 +38,10 @@ export type {
   Maybe,
   Nullable,
   TBooleanLike,
-} from './interfaces';
+} from './interfaces.js';
 
 // Export new consul-client types for advanced usage
-export { ConsulClient, ConsulHttpClient } from './consul-client';
+export { ConsulClient, ConsulHttpClient } from './consul-client/index.js';
 export type {
   ConsulClientOptions,
   RegisterCheck,
@@ -55,4 +55,4 @@ export type {
   ResponseInfo,
   OnRequestHook,
   OnResponseHook,
-} from './consul-client';
+} from './consul-client/index.js';

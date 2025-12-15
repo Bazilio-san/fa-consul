@@ -1,10 +1,10 @@
-/* eslint-disable no-console */
+ 
 // noinspection UnnecessaryLocalVariableJS,JSUnusedGlobalSymbols
 
 import { Mutex } from 'async-mutex';
 
-import { CONSUL_DEBUG_ON, DEBUG, MAX_API_CACHED, PREFIX } from './constants';
-import { ConsulClient, RequestInfo, ResponseInfo } from './consul-client';
+import { CONSUL_DEBUG_ON, DEBUG, MAX_API_CACHED, PREFIX } from './constants.js';
+import { ConsulClient, RequestInfo, ResponseInfo } from './consul-client/index.js';
 import {
   IAPIArgs,
   ICache,
@@ -21,14 +21,14 @@ import {
   IRegisterOptions,
   ISocketInfo,
   TRegisterResult,
-} from './interfaces';
-import { blue, cyan, magenta, reset, yellow } from './lib/color';
-import { getCurlText } from './lib/curl-text';
-import { getFQDNCached } from './lib/fqdn';
-import { getConfigHash } from './lib/hash';
-import getHttpRequestText from './lib/http-request-text';
-import loggerStub from './lib/logger-stub';
-import { minimizeCache, parseBoolean, serviceConfigDiff } from './lib/utils';
+} from './interfaces.js';
+import { blue, cyan, magenta, reset, yellow } from './lib/color.js';
+import { getCurlText } from './lib/curl-text.js';
+import { getFQDNCached } from './lib/fqdn.js';
+import { getConfigHash } from './lib/hash.js';
+import { getHttpRequestText } from './lib/http-request-text.js';
+import { loggerStub } from './lib/logger-stub.js';
+import { minimizeCache, parseBoolean, serviceConfigDiff } from './lib/utils.js';
 
 const mutex = new Mutex();
 

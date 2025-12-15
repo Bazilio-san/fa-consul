@@ -1,16 +1,16 @@
-/* eslint-disable no-console */
+ 
 // noinspection JSUnusedGlobalSymbols
 
-import { CONSUL_DEBUG_ON, MAX_API_CACHED, PREFIX } from './constants';
-import { getRegisterCyclic } from './cyclic-register';
-import { getRegisterConfig } from './get-register-config';
-import { IAFConsulAPI, ICache, ICLOptions, IConsulAgentOptions, IConsulAPI, TRegisterType } from './interfaces';
-import { magenta, reset, yellow } from './lib/color';
-import { getConfigHash } from './lib/hash';
-import { minimizeCache } from './lib/utils';
-import { getConsulApiCached } from './prepare-consul-api';
+import { CONSUL_DEBUG_ON, MAX_API_CACHED, PREFIX } from './constants.js';
+import { getRegisterCyclic } from './cyclic-register.js';
+import { getRegisterConfig } from './get-register-config.js';
+import { IAFConsulAPI, ICache, ICLOptions, IConsulAgentOptions, IConsulAPI, TRegisterType } from './interfaces.js';
+import { magenta, reset, yellow } from './lib/color.js';
+import { getConfigHash } from './lib/hash.js';
+import { minimizeCache } from './lib/utils.js';
+import { getConsulApiCached } from './prepare-consul-api.js';
 
-export { accessPointsUpdater } from './access-points/access-points-updater';
+export { accessPointsUpdater } from './access-points/access-points-updater.js';
 
 const defaultGetConsulUIAddress = (serviceId: string): string => {
   const { NODE_ENV, CONSUL_UI_HOST, CONSUL_DC_PROD, CONSUL_DC_DEV } = process.env;

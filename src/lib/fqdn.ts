@@ -1,9 +1,9 @@
 import * as dns from 'dns';
 import * as os from 'os';
 
-import { ICache } from '../interfaces';
+import { ICache } from '../interfaces.js';
 
-import { minimizeCache } from './utils';
+import { minimizeCache } from './utils.js';
 
 // Returns fully qualified domain name
 export const getFQDN = (h?: string, withError?: boolean, onlyDomain?: boolean): Promise<string | null> => {

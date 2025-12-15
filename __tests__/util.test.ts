@@ -1,4 +1,4 @@
-import { substitute } from '../src/lib/utils';
+import { substitute } from '../src/lib/utils.js';
 
 const TIMEOUT_MILLIS = 100_000;
 

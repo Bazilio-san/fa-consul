@@ -1,4 +1,4 @@
-import { ConsulHttpClient } from '../http-client';
+import { ConsulHttpClient } from '../http-client.js';
 
 export class CatalogAPI {
   constructor (private client: ConsulHttpClient) {}

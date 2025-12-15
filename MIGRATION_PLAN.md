@@ -40,9 +40,9 @@ Replace the deprecated `consul` npm package (v1.2.0) with direct Consul HTTP API
 ### 1.4 DNS Discovery Status
 **NOT USED** - The project uses `dns` module only for FQDN resolution (`src/lib/fqdn.ts`), not for Consul DNS service discovery.
 
-### 1.5 Usage in External Projects (fa-mcp-sdk)
+### 1.5 Usage in External Projects (test-consul)
 
-Example of typical usage pattern from `fa-mcp-sdk`:
+Example of typical usage pattern from `test-consul`:
 
 ```typescript
 // get-consul-api.ts

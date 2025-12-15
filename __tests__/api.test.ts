@@ -1,11 +1,11 @@
-import { MAX_API_CACHED } from '../src/constants';
-import { apiCache } from '../src/get-api';
+import { MAX_API_CACHED } from '../src/constants.js';
+import { apiCache } from '../src/get-api.js';
 import { IAFConsulAPI, IConsulServiceInfo } from '../src/index.js';
-import { serviceConfigDiff, sleep } from '../src/lib/utils';
+import { serviceConfigDiff, sleep } from '../src/lib/utils.js';
 
-import getConsulAPI from './lib/get-consul-api';
-import { logger } from './lib/logger';
-import { ILoggerMocked, mockLogger } from './lib/test-utils';
+import { getConsulAPI } from './lib/get-consul-api.js';
+import { logger } from './lib/logger.js';
+import { ILoggerMocked, mockLogger } from './lib/test-utils.js';
 
 
 const TIMEOUT_MILLIS = 100_000;
@@ -31,8 +31,10 @@ describe('Test API', () => {
 
   test('register', async () => {
     log.info.mockClear();
-    const registerResult = await api.register.once();
-    expect(['registered', 'already']).toContain(registerResult);
+    const registerResult1 = await api.register.once();
+    expect(['just']).toContain(registerResult1);
+    const registerResult2 = await api.register.once();
+    expect(['registered', 'already']).toContain(registerResult2);
   }, TIMEOUT_MILLIS);
 
   test('agentServiceList', async () => {

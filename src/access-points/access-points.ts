@@ -1,8 +1,8 @@
-import { CONSUL_AP_UPDATE_TIMEOUT_MILLIS } from '../constants';
-import { IAccessPoint, IAccessPoints, ILogger } from '../interfaces';
-import { blue, cyan, green, magenta, reset } from '../lib/color';
-import loggerStub from '../lib/logger-stub';
-import { isObject, sleep } from '../lib/utils';
+import { CONSUL_AP_UPDATE_TIMEOUT_MILLIS } from '../constants.js';
+import { IAccessPoint, IAccessPoints, ILogger } from '../interfaces.js';
+import { blue, cyan, green, magenta, reset } from '../lib/color.js';
+import { loggerStub } from '../lib/logger-stub.js';
+import { isObject, sleep } from '../lib/utils.js';
 
 const PREFIX = 'ACCESS-POINT';
 

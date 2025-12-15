@@ -2,14 +2,13 @@ import 'dotenv/config';
 import { cloneDeep } from 'af-tools-ts';
 import nodeConfig from 'config';
 
-import { getAPI } from '../../src';
-import { IAFConsulAPI } from '../../src/index.js';
+import { IAFConsulAPI, getAPI } from '../../src/index.js';
 
-import { logger } from './logger';
+import { logger } from './logger.js';
 
 const config = nodeConfig.util.toObject() as any;
 
-export default async ({ instanceSuffix, agentHost, serviceName }: {
+export const getConsulAPI = async ({ instanceSuffix, agentHost, serviceName }: {
   instanceSuffix?: string, agentHost?: string, serviceName?: string
 } = {}): Promise<IAFConsulAPI> => {
   const config_ = cloneDeep(config);

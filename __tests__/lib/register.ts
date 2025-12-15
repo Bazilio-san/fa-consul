@@ -1,6 +1,6 @@
 // noinspection JSUnusedGlobalSymbols
 
-import getConsulAPI from './get-consul-api';
+import { getConsulAPI } from './get-consul-api.js';
 
 const registerInConsul = async () => {
   const api = await getConsulAPI();
@@ -10,4 +10,4 @@ const registerInConsul = async () => {
   }
 };
 registerInConsul().then((r) => r);
-export default registerInConsul;
+export { registerInConsul };
