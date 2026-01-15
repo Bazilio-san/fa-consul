@@ -276,7 +276,7 @@ export const prepareConsulAPI = async (clOptions: ICLOptions): Promise<IConsulAP
         await consulInstances.reg.agent.serviceRegister(options);
         return true;
       } catch (err: Error | any) {
-        let errorMsg = `[consul.agent.service.register] ERROR:  \nbaseUrl: ${consulInstances.reg.agent.client.baseUrl}`;
+        let errorMsg = `[consul.agent.service.register] ERROR:\n  baseUrl: ${consulInstances.reg.agent.client.baseUrl}`;
         let errors: any[];
         if (err.errors?.length) {
           errors = err.errors;
