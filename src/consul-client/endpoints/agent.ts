@@ -2,7 +2,7 @@ import { ConsulHttpClient } from '../http-client.js';
 import { ServiceInfo, RegisterServiceOptions, AgentMember, RegisterCheck } from '../types.js';
 
 export class AgentAPI {
-  constructor (private client: ConsulHttpClient) {}
+  constructor (public client: ConsulHttpClient) {}
 
   /**
    * GET /v1/agent/services

@@ -4,7 +4,7 @@ import * as https from 'https';
 import { ConsulClientOptions, RequestInfo, ResponseInfo, OnRequestHook, OnResponseHook } from './types.js';
 
 export class ConsulHttpClient {
-  private readonly baseUrl: string;
+  public readonly baseUrl: string;
   private readonly headers: Record<string, string>;
   private readonly timeout: number;
   private readonly httpModule: typeof http | typeof https;

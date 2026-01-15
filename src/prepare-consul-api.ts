@@ -1,4 +1,4 @@
- 
+
 // noinspection UnnecessaryLocalVariableJS,JSUnusedGlobalSymbols
 
 import { Mutex } from 'async-mutex';
@@ -276,7 +276,18 @@ export const prepareConsulAPI = async (clOptions: ICLOptions): Promise<IConsulAP
         await consulInstances.reg.agent.serviceRegister(options);
         return true;
       } catch (err: Error | any) {
-        logger.error(`[consul.agent.service.register] ERROR:\n  err.message: ${err.message}\n  err.stack:\n${err.stack}\n`);
+        let errorMsg = `[consul.agent.service.register] ERROR:  \nbaseUrl: ${consulInstances.reg.agent.client.baseUrl}`;
+        let errors: any[];
+        if (err.errors?.length) {
+          errors = err.errors;
+        } else {
+          errors = [err];
+        }
+        errors.forEach((v) => {
+          errorMsg += `\n  err.message: ${v.message}\n  err.stack:\n${v.stack}\n`;
+        });
+
+        logger.error(errorMsg);
         return withError ? err : false;
       }
     },
